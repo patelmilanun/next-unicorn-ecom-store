@@ -1,8 +1,12 @@
-import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Golos_Text } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'] });
+import Navbar from '@/components/navbar';
+import Footer from '@/components/footer';
+
+import './globals.css';
+
+const golostext = Golos_Text({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Store | Next Unicorn Ecom',
@@ -16,7 +20,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={golostext.className}>
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
