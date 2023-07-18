@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Golos_Text } from 'next/font/google';
 
+import ToastProvider from '@/providers/toast-provider';
 import ModalProvider from '@/providers/modal-provider';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
@@ -22,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={golostext.className}>
+        <ToastProvider />
         <ModalProvider />
         <Navbar />
         {children}
