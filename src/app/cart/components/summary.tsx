@@ -40,7 +40,7 @@ const Summary = () => {
     if (typeof result !== 'string') {
       const response = await result.json();
 
-      window.location = response.data.url;
+      window.location = response.url;
     }
   };
 
