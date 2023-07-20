@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useParams } from 'next/navigation';
 
 import Button from '@/components/ui/button';
 import Currency from '@/components/ui/currency';
@@ -10,6 +10,7 @@ import { toast } from 'react-hot-toast';
 
 const Summary = () => {
   const searchParams = useSearchParams();
+  const { storeId } = useParams();
   const items = useCart((state) => state.items);
   const removeAll = useCart((state) => state.removeAll);
 
@@ -31,11 +32,16 @@ const Summary = () => {
   const onCheckout = async () => {
     const data = {
       productIds: items.map((item) => item.id),
+      redirectUrl: `${location.origin}/${storeId}/cart?success=1`,
+      cancelUrl: `${location.origin}/${storeId}/cart?canceled=1`,
     };
-    const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
-      method: 'POST',
-      body: JSON.stringify(data),
-    }).catch((err) => toast.error('Something went wrong. Please try again'));
+    const result = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/${storeId}/checkout`,
+      {
+        method: 'POST',
+        body: JSON.stringify(data),
+      }
+    ).catch((err) => toast.error('Something went wrong. Please try again'));
 
     if (typeof result !== 'string') {
       const response = await result.json();

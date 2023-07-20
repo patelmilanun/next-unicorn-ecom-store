@@ -1,9 +1,9 @@
 import { Color } from '@/types';
 
-const URL = `${process.env.NEXT_PUBLIC_API_URL}/colors`;
-
-const getColors = async (): Promise<Color[]> => {
-  const res = await fetch(URL);
+const getColors = async (storeId: string): Promise<Color[]> => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/${storeId}/colors`
+  );
 
   return res.json();
 };

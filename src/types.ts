@@ -37,3 +37,7 @@ export interface Color {
   name: string;
   value: string;
 }
+
+export interface Params {
+  params: { storeId: string };
+}

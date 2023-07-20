@@ -3,10 +3,14 @@ import getProducts from '@/actions/get-products';
 import ProductList from '@/components/product-list';
 import Billboard from '@/components/ui/billboard';
 import Container from '@/components/ui/container';
+import { Params } from '@/types';
 
-const HomePage = async () => {
-  const products = await getProducts({ isFeatured: true });
-  const billboard = await getBillboard('9d124324-3fc1-4f9d-ac5f-c3c40902a843');
+const HomePage = async ({ params: { storeId } }: Params) => {
+  const products = await getProducts({ isFeatured: true }, storeId);
+  const billboard = await getBillboard(
+    '9d124324-3fc1-4f9d-ac5f-c3c40902a843',
+    storeId
+  );
 
   return (
     <Container>

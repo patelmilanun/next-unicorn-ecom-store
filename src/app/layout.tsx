@@ -3,8 +3,6 @@ import { Golos_Text } from 'next/font/google';
 
 import ToastProvider from '@/providers/toast-provider';
 import ModalProvider from '@/providers/modal-provider';
-import Navbar from '@/components/navbar';
-import Footer from '@/components/footer';
 
 import './globals.css';
 
@@ -25,9 +23,7 @@ export default function RootLayout({
       <body className={golostext.className}>
         <ToastProvider />
         <ModalProvider />
-        <Navbar />
         {children}
-        <Footer />
       </body>
     </html>
   );

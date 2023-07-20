@@ -8,15 +8,16 @@ import { Category } from '@/types';
 
 interface MainNavProps {
   data: Category[];
+  storeId: string;
 }
 
-const MainNav: React.FC<MainNavProps> = ({ data }) => {
+const MainNav: React.FC<MainNavProps> = ({ data, storeId }) => {
   const pathname = usePathname();
 
   const routes = data.map((route) => ({
-    href: `/category/${route.id}`,
+    href: `/${storeId}/category/${route.id}`,
     label: route.name,
-    active: pathname === `/category/${route.id}`,
+    active: pathname === `/${storeId}/category/${route.id}`,
   }));
 
   return (

@@ -14,6 +14,7 @@ import MobileFilters from './components/mobile-filters';
 interface CategoryPageProps {
   params: {
     categoryId: string;
+    storeId: string;
   };
   searchParams: {
     colorId: string;
@@ -25,14 +26,17 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
   params,
   searchParams,
 }) => {
-  const products = await getProducts({
-    categoryId: params.categoryId,
-    colorId: searchParams.colorId,
-    sizeId: searchParams.sizeId,
-  });
-  const sizes = await getSizes();
-  const colors = await getColors();
-  const category = await getCategory(params.categoryId);
+  const products = await getProducts(
+    {
+      categoryId: params.categoryId,
+      colorId: searchParams.colorId,
+      sizeId: searchParams.sizeId,
+    },
+    params.storeId
+  );
+  const sizes = await getSizes(params.storeId);
+  const colors = await getColors(params.storeId);
+  const category = await getCategory(params.categoryId, params.storeId);
 
   return (
     <div className="bg-white">
