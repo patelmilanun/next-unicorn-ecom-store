@@ -11,6 +11,8 @@ import getColors from '@/actions/get-colors';
 import Filter from './components/filter';
 import MobileFilters from './components/mobile-filters';
 
+export const revalidate = 0;
+
 interface CategoryPageProps {
   params: {
     categoryId: string;

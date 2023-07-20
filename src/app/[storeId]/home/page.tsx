@@ -5,6 +5,8 @@ import Billboard from '@/components/ui/billboard';
 import Container from '@/components/ui/container';
 import { Params } from '@/types';
 
+export const revalidate = 0;
+
 const HomePage = async ({ params: { storeId } }: Params) => {
   const products = await getProducts({ isFeatured: true }, storeId);
   const billboard = await getBillboard(
