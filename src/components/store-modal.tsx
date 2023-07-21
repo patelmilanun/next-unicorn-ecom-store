@@ -17,6 +17,7 @@ import {
 import useStoreModal from '@/hooks/use-store-modal';
 import useBaseUrl from '@/hooks/use-base-url';
 import Button from '@/components/ui/button';
+import { toast } from 'react-hot-toast';
 
 const formSchema = z.object({
   url: z.string().url('Invalid api url'),
@@ -36,6 +37,11 @@ export default function StoreModal() {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setBaseUrl(values.url);
     window.location.assign(`${values.url.split('/').pop()}/home`);
+  };
+
+  const onCopy = (url: string) => {
+    navigator.clipboard.writeText(url);
+    toast.success('Api URL copied to clipboard.');
   };
 
   return (
@@ -71,6 +77,16 @@ export default function StoreModal() {
                 </div>
               </form>
             </Form>
+            <div
+              className="underline cursor-pointer"
+              onClick={() =>
+                onCopy(
+                  'https://next-unicorn-ecom-admin.vercel.app/api/6cd099f8-7607-489b-bb8d-680e8af86ffa'
+                )
+              }
+            >
+              Click here to copy test api url
+            </div>
           </div>
         </div>
       </div>
