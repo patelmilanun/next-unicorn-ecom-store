@@ -8,19 +8,20 @@ import Container from '@/components/ui/container';
 export const revalidate = 0;
 
 interface ProductPageProps {
-  params: {
+  params: Promise<{
     productId: string;
     storeId: string;
-  };
+  }>;
 }
 
-const ProductPage: React.FC<ProductPageProps> = async ({ params }) => {
-  const product = await getProduct(params.productId, params.storeId);
+const ProductPage = async ({ params }: ProductPageProps) => {
+  const { productId, storeId } = await params;
+  const product = await getProduct(productId, storeId);
   const suggestedProducts = await getProducts(
     {
       categoryId: product?.category?.id,
     },
-    params.storeId
+    storeId
   );
 
   if (!product) {

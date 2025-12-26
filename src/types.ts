@@ -39,5 +39,5 @@ export interface Color {
 }
 
 export interface Params {
-  params: { storeId: string };
+  params: Promise<{ storeId: string }>;
 }

@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
-import { Golos_Text } from 'next/font/google';
+import { Inter } from 'next/font/google';
 
 import ToastProvider from '@/providers/toast-provider';
 import ModalProvider from '@/providers/modal-provider';
 
 import './globals.css';
 
-const golostext = Golos_Text({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Store | Next Unicorn Ecom',
@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={golostext.className}>
+      <body className={inter.className}>
         <ToastProvider />
         <ModalProvider />
         {children}
