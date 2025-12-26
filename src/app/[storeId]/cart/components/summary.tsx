@@ -39,15 +39,24 @@ const Summary = () => {
       `${process.env.NEXT_PUBLIC_API_URL}/${storeId}/checkout`,
       {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify(data),
       }
-    ).catch((err) => toast.error('Something went wrong. Please try again'));
+    ).catch((err) => {
+      toast.error('Something went wrong. Please try again');
+      return null;
+    });
 
-    if (typeof result !== 'string') {
-      const response = await result.json();
-
-      window.location = response.url;
+    if (!result || !result.ok) {
+      toast.error('Something went wrong. Please try again');
+      return;
     }
+
+    const response = await result.json();
+
+    window.location = response.url;
   };
 
   return (
