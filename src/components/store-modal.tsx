@@ -63,10 +63,7 @@ export default function StoreModal() {
                     <FormItem>
                       <FormLabel>Api URL</FormLabel>
                       <FormControl>
-                        <Input
-                          placeholder="http://localhost:3000/api/0e1c0ad5-7230-4e70-b0ac-f7787019caf1"
-                          {...field}
-                        />
+                        <Input {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -79,11 +76,7 @@ export default function StoreModal() {
             </Form>
             <div
               className="underline cursor-pointer"
-              onClick={() =>
-                onCopy(
-                  'https://next-unicorn-ecom-admin.vercel.app/api/6cd099f8-7607-489b-bb8d-680e8af86ffa'
-                )
-              }
+              onClick={() => onCopy(process.env.NEXT_PUBLIC_TEST_API_URL!)}
             >
               Click here to copy test api url
             </div>
